@@ -44,7 +44,7 @@ module.exports = function(config) {
       'botkit_users',
       'botkit_channels'].map(tableName => q(dbClient, `CREATE TABLE IF NOT EXISTS ${tableName} (
         id char(50) NOT NULL PRIMARY KEY,
-        json JSON NOT NULL
+        json JSONB NOT NULL
       )`))
 
     dbClient.end();
