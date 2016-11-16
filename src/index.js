@@ -92,7 +92,7 @@ module.exports = function (config) {
         if(result.rowCount === 0) {
           throw {displayName: 'NotFound'};
         }
-        return JSON.parse(result.rows[0].json);
+        return result.rows[0].json;
       }),
       save: wrap(function *(data) {
         yield dbexec(q => q(`INSERT INTO ${tableName} (id, json)
@@ -101,7 +101,7 @@ module.exports = function (config) {
       }),
       all: wrap(function *() {
         const result = yield dbexec(q => q(`SELECT json from ${tableName}`))
-        return result.rows.map(x => JSON.parse(x.json));
+        return result.rows.map(x => x.json);
       })
     };
   }
