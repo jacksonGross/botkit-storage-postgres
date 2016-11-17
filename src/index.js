@@ -14,6 +14,7 @@ module.exports = function (config) {
     port: config.port || process.env.BOTKIT_STORAGE_POSTGRES_PORT || '5432',
     max: config.maxClients || process.env.BOTKIT_STORAGE_POSTGRES_MAX_CLIENTS || '10',
     idleTimeoutMillis: config.idleTimeoutMillis || process.env.BOTKIT_STORAGE_POSTGRES_IDLE_TIMEOUT_MILLIS || '30000',
+    ssl: process.env.NODE_ENV === 'production',
   };
 
   const promisedPool = co(function *() {
