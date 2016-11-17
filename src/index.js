@@ -22,7 +22,7 @@ module.exports = function (config) {
       .catch(err => {throw new Error(`Could not execute '${qstr}'. Error: ${err.stack || err}`)});
     const connect = (client) => new Promise((resolve,reject) => client.connect((err, done) => err ? reject(err) : resolve()))
 
-    const noDbClient = new pg.Client(Object.assign({}, config, {database: 'template1'}));
+    const noDbClient = new pg.Client(Object.assign({}, config));
     yield connect(noDbClient);
     const dbexistsQuery = yield q(noDbClient, `SELECT 1 from pg_database WHERE datname='${config.database}'`);
 
